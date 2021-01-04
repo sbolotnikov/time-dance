@@ -116,7 +116,7 @@ var moveXY2=[{duration:4, x:Math.floor(widthW*-.5), y:Math.floor(heightW*0.1),ea
     .to("#couple",{opacity:1,duration:1})
     .to("#couple",{duration:2,rotationY:360,transformOrigin:"-25vw 50%"})
     .to("#couple",{x:-Math.floor((widthW-(heightW*0.4/1534*1652))/2), y:-Math.floor((heightW*.3)), duration:2})
-    .to("#couple",{scale:.3,transformOrigin:`${Math.floor((widthW-375)/905*47)-75}vw ${5}vh`, duration:1})
+    .to("#couple",{scale:.3,transformOrigin:`${Math.floor((widthW-375)/905*47)-75}vw ${5}vh`, opacity:0, duration:1})
     // -28vw 5vh
-console.log((widthW-375)/905*47-75)
+console.log(Math.floor((widthW-375)/905*47)-75)
   }
