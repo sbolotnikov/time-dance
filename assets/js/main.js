@@ -1,25 +1,19 @@
 var heightW = window.innerHeight;
 var widthW = window.innerWidth;
-var moveXY=[{duration:4, x:Math.floor(widthW*.6), y:Math.floor(heightW*-0.1),ease:"linear"},
-{duration:2, x:Math.floor(widthW*.6),y:Math.floor(heightW*-0.5),ease:"back"},
-{duration:4, x:Math.floor(widthW*.1),y:Math.floor(heightW*-0.5),ease: "linear"},
-{duration:3, x:Math.floor(widthW/2-(heightW*0.4*979/1518*.7)),y:-Math.floor((heightW-heightW*.4)/2),ease: "slow"}];
+function getYCenter(el){
+ return Math.floor(document.querySelector(el).getBoundingClientRect().top+document.querySelector(el).getBoundingClientRect().height/2);
 
-var moveXY2=[{duration:4, x:Math.floor(widthW*-.5), y:Math.floor(heightW*0.1),ease:"linear"},
-{duration:2, x:Math.floor(widthW*-.5),y:Math.floor(heightW*0.5),ease:"back"},
-{duration:4, x:Math.floor(0),y:Math.floor(heightW*0.5),ease: "linear"},
-{duration:3, x:-Math.floor(widthW/2-(heightW*0.4*1278/1537*.7)),y:Math.floor((heightW-heightW*(.4+.07))/2),ease: "slow"}];
-
-
-
-
+}
   function startHtml() {
     document.querySelector("#couple").style.left=`${Math.floor((widthW-(heightW*0.4/1652*1534))/2+(heightW*0.4/1652*1534))}px`;
     console.log(Math.floor((widthW-(heightW*0.4/1652*1534 ))/2))
-    gsap.from("#dude", {duration:1,opacity:0});
-    gsap.from("#girl", {duration:1,opacity:0});
-    gsap.to("#leg1", {duration:1,transformOrigin:"5% -1%",rotate:20,delay:1});
+    gsap.from("#dude", {transformOrigin:"50% 50%",opacity:0});
+    gsap.to("#dude", {duration:2,scale:3, rotateY:-40 });
+    gsap.to("#leg1", {duration:1, transformOrigin:"5% -1%",rotate:20,delay:1});
 
+
+    gsap.from("#girl", {transformOrigin:"50% 50%",scale:.2,opacity:0});
+    gsap.to("#girl", {duration:2,scale:.5});
     gsap.to("#rightArmG", {transformOrigin:"right 10%",rotate:90,duration:4,delay:1});
     gsap.to("#rightArmG", {duration:4, y: 20,x:-20,delay:1});
     gsap.to("#leftArmG", {duration:4,transformOrigin:"left 5%",rotate:-100,delay:1})
@@ -60,63 +54,41 @@ var moveXY2=[{duration:4, x:Math.floor(widthW*-.5), y:Math.floor(heightW*0.1),ea
     .to("#leftArm", {duration:1,transformOrigin:"5% 5%",rotate:90, yoyo:true,repeat:5});
 
 
-    // gsap.timeline({ delay:6.4})
-    // .to("#dude", {duration:4,x:600,y:-100,ease: "slow"})
-    // .to("#dude", {duration:2,y: -400,ease: "expo"})
-    // .to("#dude", {duration:4,x:-50,y: -400,ease: "back"})
-    // .to("#dude", {duration:3,x:100,y:15,ease: "slow"})
+    gsap.to("#dude", {delay:6.4,duration:4, rotationY:40, scale:1, x:Math.floor(widthW/2-(heightW*0.4*979/1518*.7)),y:-Math.floor(-heightW/2+getYCenter("#dude")),ease: "slow"})
+    gsap.to("#girl", {delay:7,duration:3,  scale:1, x:-Math.floor(widthW/2-(heightW*0.4*1278/1537*.7)),y:Math.floor(heightW/2-getYCenter("#girl")),ease: "slow"})
 
-    // move('#dude')
-    // .to(500, 200)
-    // .rotate(180)
-    // .scale(.5)
-    // .set('background-color', '#888')
-    // .set('border-color', 'black')
-    // .duration('2s')
-
-    gsap.timeline({ delay:6.4})
-    .to("#dude", moveXY[0])
-    .to("#dude", moveXY[1])
-    .to("#dude", moveXY[2])
-    .to("#dude", moveXY[3])
-
-
-    gsap.timeline({ delay:7})
-    .to("#girl", moveXY2[0])
-    .to("#girl", moveXY2[1])
-    .to("#girl", moveXY2[2])
-    .to("#girl", moveXY2[3])
-
-    gsap.timeline({repeat:11, delay:7})
+    gsap.timeline({repeat:2, delay:7})
     .to("#rightLegG", {duration:.5,transformOrigin:"right 0%",rotate:-30,ease: "back"})  
     .to("#rightLegG", {duration:.5,transformOrigin:"right 0%",rotate:0,ease: "back"})
-    gsap.timeline({repeat:11, delay:7})
+    gsap.timeline({repeat:2, delay:7})
     .to("#leftLegG", {duration:.5,transformOrigin:"5% -1%",rotate:30,ease: "back"})
     .to("#leftLegG", {duration:.5,transformOrigin:"5% -1%",rotate:0,ease: "back"})
 
 
 
-    gsap.to("#headMain", {delay:6.4,duration:1,transformOrigin:"right bottom",rotate:4, yoyo:true,repeat:9});
-    gsap.to("#cylinder", {delay:6.4,duration:1,transformOrigin:"left top",rotate:2, yoyo:true,repeat:9});
-    gsap.to("#glases", {delay:6.4,duration:1,transformOrigin:"right top",rotate:5, yoyo:true,repeat:9});
+    gsap.to("#headMain", {delay:6.4,duration:1,transformOrigin:"right bottom",rotate:4, yoyo:true,repeat:4});
+    gsap.to("#cylinder", {delay:6.4,duration:1,transformOrigin:"left top",rotate:2, yoyo:true,repeat:4});
+    gsap.to("#glases", {delay:6.4,duration:1,transformOrigin:"right top",rotate:5, yoyo:true,repeat:4});
      
-    gsap.timeline({repeat:11, delay:6.4})
+    gsap.timeline({repeat:3, delay:6.4})
     .to("#leg2", {duration:.5,transformOrigin:"1% 0%",rotate:-30,ease: "back"})  
     .to("#leg2", {duration:.5,transformOrigin:"1% 0%",rotate:0,ease: "back"})
 
 
-    gsap.timeline({repeat:11, delay:6.4})
+    gsap.timeline({repeat:3, delay:6.4})
     .to("#leg1", {duration:.5,transformOrigin:"5% -1%",rotate:30,ease: "back"})
     .to("#leg1", {duration:.5,transformOrigin:"5% -1%",rotate:0,ease: "back"})
 
-    gsap.to("#dude",{delay:20, opacity:0,duration:1});
-    gsap.to("#girl",{delay:20, opacity:0,duration:1});
+    gsap.to("#dude",{delay:10, opacity:0,duration:1});
+    gsap.to("#girl",{delay:10, opacity:0,duration:1});
 
-    gsap.timeline({delay:20})
-    .to("#couple",{opacity:1,duration:1})
-    .to("#couple",{duration:2,rotationY:360,transformOrigin:"-25vw 50%"})
-    .to("#couple",{x:-Math.floor((widthW-(heightW*0.4/1534*1652))/2), y:-Math.floor((heightW*.3)), duration:2})
-    .to("#couple",{scale:.3,transformOrigin:`${Math.floor((widthW-375)/905*47)-75}vw ${5}vh`, opacity:0, duration:1})
+    gsap.timeline({delay:10})
+    .to("#couple",{opacity:1,duration:1, transformOrigin:`${-35+(widthW-300)/1100*15}vw 50%`})
+    .to("#couple",{duration:2,rotationY:360})
+    .to("#couple",{transformOrigin:"50% 50%", y:-Math.floor((heightW*.5)), duration:2})
+    // .to("#couple",{scale:.3,transformOrigin:`${Math.floor((widthW-375)/905*47)-75}vw ${5}vh`, opacity:0, duration:1})
+    gsap.timeline({ delay:13}).to("#mainSite",{duration:3,opacity:1})
+    
     // -28vw 5vh
 console.log(Math.floor((widthW-375)/905*47)-75)
   }
